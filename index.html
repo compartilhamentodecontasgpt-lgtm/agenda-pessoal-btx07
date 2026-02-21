@@ -3,8 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agenda + Bloco de Notas · iPress</title>
+    <title>Agenda + Bloco de Notas · iPress PWA</title>
+    <!-- Metadados PWA -->
+    <meta name="theme-color" content="#1d4ed8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="manifest" href="manifest.json">
+    <!-- Ícone para dispositivos Apple (fallback) -->
+    <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAIAAAAiOjnJAAAACXBIWXMAAAsTAAALEwEAmpwYAAAGEWlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNi4wLW0wMDIgNzkuMTY0NDQ4LCAyMDIwLzAyLzEzLTE2OjA4OjIyICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdEV2dD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlRXZlbnQjIiB4bWxuczpwaG90b3Nob3A9Imh0dHA6Ly9ucy5hZG9iZS5jb20vcGhvdG9zaG9wLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgMjEuMiAoV2luZG93cykiIHhtcDpDcmVhdGVEYXRlPSIyMDI1LTAyLTIyVDEwOjMwOjQ3LTAzOjAwIiB4bXA6TWV0YWRhdGFEYXRlPSIyMDI1LTAyLTIyVDEwOjMwOjQ3LTAzOjAwIiB4bXA6TW9kaWZ5RGF0ZT0iMjAyNS0wMi0yMlQxMDozMDo0Ny0wMzowMCIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpmN2Q3MTg4My0wN2VjLTc3NDYtYjU2NC04YmI3ODM1MzI5NzgiIHhtcE1NOkRvY3VtZW50SUQ9ImFkb2JlOmRvY2lkOnBob3Rvc2hvcDo3YjRjMjA4Ny0yNjI2LTk3NDktODc4Ny1jNWM1YzQ4ZmE4YzMiIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDpjN2UzYjY2Yi02ZDBhLTU3NDMtOTM5MC1hYjI5N2Q3YTI5NDEiIHBob3Rvc2hvcDpDb2xvck1vZGU9IjMiIHBob3Rvc2hvcDpJQ0NQcm9maWxlPSJzUkdCIElFQzYxOTY2LTIuMSIgZGM6Zm9ybWF0PSJpbWFnZS9wbmciPiA8eG1wTU06SGlzdG9yeT4gPHJkZjpTZXE+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJjcmVhdGVkIiBzdEV2dDppbnN0YW5jZUlEPSJ4bXAuaWlkOmM3ZTNiNjZiLTZkMGEtNTc0My05MzkwLWFiMjk3ZDdhMjk0MSIgc3RFdnQ6d2hlbj0iMjAyNS0wMi0yMlQxMDozMDo0Ny0wMzowMCIgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWRvYmUgUGhvdG9zaG9wIDIxLjIgKFdpbmRvd3MpIi8+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJzYXZlZCIgc3RFdnQ6aW5zdGFuY2VJRD0ieG1wLmlpZDpmN2Q3MTg4My0wN2VjLTc3NDYtYjU2NC04YmI3ODM1MzI5NzgiIHN0RXZ0OndoZW49IjIwMjUtMDItMjJUMTA6MzA6NDctMDM6MDAiIHN0RXZ0OnNvZnR3YXJlQWdlbnQ9IkFkb2JlIFBob3Rvc2hvcCAyMS4yIChXaW5kb3dzKSIgc3RFdnQ6Y2hhbmdlZD0iLyIvPiA8L3JkZjpTZXE+IDwveG1wTU06SGlzdG9yeT4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7J8fVkAAABWWlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAeDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDYuMC1tMDAyIDc5LjE2NDQ0OCwgMjAyMC8wMi8xMy0xNjowODoyMiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgMjEuMiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6YzdlM2I2NmItNmQwYS01NzQzLTkzOTAtYWIyOTdkN2EyOTQxIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOmM3ZTNiNjZiLTZkMGEtNTc0My05MzkwLWFiMjk3ZDdhMjk0MSI+IDx4bXBNTTpIaXN0b3J5PiA8cmRmOlNlcT4gPHJkZjpsaSBzdEV2dDphY3Rpb249ImNyZWF0ZWQiIHN0RXZ0Omluc3RhbmNlSUQ9InhtcC5paWQ6YzdlM2I2NmItNmQwYS01NzQzLTkzOTAtYWIyOTdkN2EyOTQxIiBzdEV2dDp3aGVuPSIyMDI1LTAyLTIyVDEwOjMwOjQ3LTAzOjAwIiBzdEV2dDpzb2Z0d2FyZUFnZW50PSJBZG9iZSBQaG90b3Nob3AgMjEuMiAoV2luZG93cykiLz4gPC9yZGY6U2VxPiA8L3htcE1NOkhpc3Rvcnk+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+FpD2qAAAAbFJREFUeJzt3T0OgzAMBtBYao/D+bnD0L0jhQYGG+OXKqxnKVJevgQ7sb0eDwAAr+1rPQAA/McQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwH9ALMv3D4cY9OZYAAAAAElFTkSuQmCC">
     <style>
+        /* ========== ESTILOS COMPLETOS ========== */
         * {
             margin: 0;
             padding: 0;
@@ -28,7 +36,6 @@
             overflow: hidden;
             transition: all 0.2s;
         }
-        /* tela de login */
         .login-screen {
             padding: 48px 32px;
             text-align: center;
@@ -105,7 +112,6 @@
             font-size: 0.9rem;
             margin-top: 8px;
         }
-        /* aplicativo principal */
         #app {
             display: none;
             background: white;
@@ -282,7 +288,6 @@
             border-radius: 60px;
             background: white;
         }
-        /* BLOCO DE NOTAS */
         .toolbar {
             display: flex;
             flex-wrap: wrap;
@@ -313,7 +318,6 @@
             border-color: #1d4ed8;
             color: white;
         }
-        /* editor com aspecto de folha */
         .editor-wrapper {
             background: #e6e9ef;
             padding: 24px 20px;
@@ -341,7 +345,6 @@
         .editor:focus {
             box-shadow: 0 6px 18px rgba(29,78,216,0.1), 0 0 0 2px rgba(29,78,216,0.2);
         }
-        /* imagens redimensionáveis e com alças */
         .editor img {
             max-width: 100%;
             height: auto;
@@ -357,7 +360,6 @@
         .editor img:active {
             border: 2px dashed #1d4ed8;
         }
-        /* controles de tamanho da imagem */
         .img-controls {
             display: inline-flex;
             gap: 4px;
@@ -464,7 +466,6 @@
                     <button id="underline-btn"><u>U</u></button>
                     <button id="inserir-imagem-btn">🖼️ Imagem</button>
                     <input type="file" id="upload-imagem" accept="image/*" style="display: none;">
-                    <!-- Botões para redimensionar imagem selecionada -->
                     <span class="img-controls">
                         <button id="img-diminuir" title="Diminuir imagem selecionada">−</button>
                         <button id="img-aumentar" title="Aumentar imagem selecionada">+</button>
@@ -472,7 +473,6 @@
                     <span style="flex:1"></span>
                     <button id="salvar-nota" class="btn-azul-peq">💾 Salvar p/ data</button>
                 </div>
-                <!-- wrapper para centralizar a folha -->
                 <div class="editor-wrapper">
                     <div id="notepad-editor" class="editor" contenteditable="true" placeholder="Escreva aqui..."></div>
                 </div>
@@ -485,7 +485,6 @@
         </div>
     </div>
 </div>
-
 <script>
     (function() {
         // ---------- PERSISTÊNCIA DE LOGIN ----------
@@ -497,11 +496,9 @@
         const loginErro = document.getElementById('login-erro');
         const logoutBtn = document.getElementById('logout-btn');
 
-        // Verifica se já está logado (localStorage)
         if (localStorage.getItem('logado') === 'true') {
             loginScreen.style.display = 'none';
             appDiv.style.display = 'block';
-            // Inicia a aplicação após um pequeno atraso para garantir que o DOM esteja pronto
             setTimeout(iniciarAplicacao, 0);
         }
 
@@ -529,7 +526,6 @@
         let currentMonth = new Date().getMonth();
         let selectedDateStr = null;
 
-        // Estruturas de dados
         let agendaDB = {};
         let notasDB = {};
 
@@ -548,7 +544,6 @@
             localStorage.setItem('notasDB', JSON.stringify(notasDB));
         }
 
-        // Elementos DOM
         const calendarioCorpo = document.getElementById('calendario-corpo');
         const mesAnoEl = document.getElementById('mes-ano');
         const btnMesAnt = document.getElementById('mes-anterior');
@@ -584,7 +579,6 @@
             const ultimoDia = new Date(currentYear, currentMonth + 1, 0);
             const diasNoMes = ultimoDia.getDate();
             const diaSemanaInicio = primeiroDia.getDay();
-
             const meses = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
             mesAnoEl.innerText = `${meses[currentMonth]} ${currentYear}`;
 
@@ -683,7 +677,6 @@
             carregarNotaPorData(selectedDateStr);
         });
 
-        // ---------- BLOCO DE NOTAS ----------
         function carregarNotaPorData(dataStr) {
             if (notasDB[dataStr]) {
                 notepadEditor.innerHTML = notasDB[dataStr];
@@ -711,7 +704,6 @@
         italicBtn.addEventListener('click', () => document.execCommand('italic', false));
         underlineBtn.addEventListener('click', () => document.execCommand('underline', false));
 
-        // Inserir imagem com tamanho inicial de 300px
         inserirImagemBtn.addEventListener('click', () => {
             uploadImagem.click();
         });
@@ -724,7 +716,7 @@
                     img.src = event.target.result;
                     img.style.maxWidth = '100%';
                     img.style.height = 'auto';
-                    img.style.width = '300px'; // tamanho inicial
+                    img.style.width = '300px';
                     const selection = window.getSelection();
                     if (selection.rangeCount > 0) {
                         const range = selection.getRangeAt(0);
@@ -740,16 +732,12 @@
             uploadImagem.value = '';
         });
 
-        // Redimensionar imagem selecionada com botões +/-
         function getSelectedImage() {
             const selection = window.getSelection();
             if (selection.rangeCount === 0) return null;
             const node = selection.getRangeAt(0).startContainer;
-            // Se o nó for texto, pega o elemento pai
             const element = node.nodeType === Node.ELEMENT_NODE ? node : node.parentElement;
             if (element && element.tagName === 'IMG') return element;
-            // Se a seleção estiver dentro de um parágrafo, tenta achar uma imagem filha?
-            // Mas vamos simplificar: se o elemento selecionado for uma imagem, retorna.
             return null;
         }
 
@@ -775,7 +763,6 @@
             }
         });
 
-        // Impressões
         imprimirAgendaBtn.addEventListener('click', () => {
             if (!selectedDateStr) return;
             const itens = agendaDB[selectedDateStr] || [];
@@ -820,6 +807,57 @@
             carregarNotaPorData(selectedDateStr);
         }
     })();
+
+    // ---------- SERVICE WORKER (PWA) ----------
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            const swCode = `
+                self.addEventListener('install', (event) => {
+                    self.skipWaiting();
+                });
+                self.addEventListener('activate', (event) => {
+                    event.waitUntil(clients.claim());
+                });
+                self.addEventListener('fetch', (event) => {
+                    if (event.request.url.endsWith('/manifest.json')) {
+                        const manifest = {
+                            name: 'Agenda iPress',
+                            short_name: 'Agenda',
+                            description: 'Agenda com bloco de notas e calendário',
+                            start_url: './',
+                            display: 'standalone',
+                            background_color: '#1d4ed8',
+                            theme_color: '#1d4ed8',
+                            icons: [
+                                {
+                                    src: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAIAAAAiOjnJAAAACXBIWXMAAAsTAAALEwEAmpwYAAAGEWlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNi4wLW0wMDIgNzkuMTY0NDQ4LCAyMDIwLzAyLzEzLTE2OjA4OjIyICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdEV2dD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlRXZlbnQjIiB4bWxuczpwaG90b3Nob3A9Imh0dHA6Ly9ucy5hZG9iZS5jb20vcGhvdG9zaG9wLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgMjEuMiAoV2luZG93cykiIHhtcDpDcmVhdGVEYXRlPSIyMDI1LTAyLTIyVDEwOjMwOjQ3LTAzOjAwIiB4bXA6TWV0YWRhdGFEYXRlPSIyMDI1LTAyLTIyVDEwOjMwOjQ3LTAzOjAwIiB4bXA6TW9kaWZ5RGF0ZT0iMjAyNS0wMi0yMlQxMDozMDo0Ny0wMzowMCIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpmN2Q3MTg4My0wN2VjLTc3NDYtYjU2NC04YmI3ODM1MzI5NzgiIHhtcE1NOkRvY3VtZW50SUQ9ImFkb2JlOmRvY2lkOnBob3Rvc2hvcDo3YjRjMjA4Ny0yNjI2LTk3NDktODc4Ny1jNWM1YzQ4ZmE4YzMiIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDpjN2UzYjY2Yi02ZDBhLTU3NDMtOTM5MC1hYjI5N2Q3YTI5NDEiIHBob3Rvc2hvcDpDb2xvck1vZGU9IjMiIHBob3Rvc2hvcDpJQ0NQcm9maWxlPSJzUkdCIElFQzYxOTY2LTIuMSIgZGM6Zm9ybWF0PSJpbWFnZS9wbmciPiA8eG1wTU06SGlzdG9yeT4gPHJkZjpTZXE+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJjcmVhdGVkIiBzdEV2dDppbnN0YW5jZUlEPSJ4bXAuaWlkOmM3ZTNiNjZiLTZkMGEtNTc0My05MzkwLWFiMjk3ZDdhMjk0MSIgc3RFdnQ6d2hlbj0iMjAyNS0wMi0yMlQxMDozMDo0Ny0wMzowMCIgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWRvYmUgUGhvdG9zaG9wIDIxLjIgKFdpbmRvd3MpIi8+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJzYXZlZCIgc3RFdnQ6aW5zdGFuY2VJRD0ieG1wLmlpZDpmN2Q3MTg4My0wN2VjLTc3NDYtYjU2NC04YmI3ODM1MzI5NzgiIHN0RXZ0OndoZW49IjIwMjUtMDItMjJUMTA6MzA6NDctMDM6MDAiIHN0RXZ0OnNvZnR3YXJlQWdlbnQ9IkFkb2JlIFBob3Rvc2hvcCAyMS4yIChXaW5kb3dzKSIgc3RFdnQ6Y2hhbmdlZD0iLyIvPiA8L3JkZjpTZXE+IDwveG1wTU06SGlzdG9yeT4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7J8fVkAAABWWlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAeDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDYuMC1tMDAyIDc5LjE2NDQ0OCwgMjAyMC8wMi8xMy0xNjowODoyMiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgMjEuMiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6YzdlM2I2NmItNmQwYS01NzQzLTkzOTAtYWIyOTdkN2EyOTQxIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOmM3ZTNiNjZiLTZkMGEtNTc0My05MzkwLWFiMjk3ZDdhMjk0MSI+IDx4bXBNTTpIaXN0b3J5PiA8cmRmOlNlcT4gPHJkZjpsaSBzdEV2dDphY3Rpb249ImNyZWF0ZWQiIHN0RXZ0Omluc3RhbmNlSUQ9InhtcC5paWQ6YzdlM2I2NmItNmQwYS01NzQzLTkzOTAtYWIyOTdkN2EyOTQxIiBzdEV2dDp3aGVuPSIyMDI1LTAyLTIyVDEwOjMwOjQ3LTAzOjAwIiBzdEV2dDpzb2Z0d2FyZUFnZW50PSJBZG9iZSBQaG90b3Nob3AgMjEuMiAoV2luZG93cykiLz4gPC9yZGY6U2VxPiA8L3htcE1NOkhpc3Rvcnk+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+FpD2qAAAAbFJREFUeJzt3T0OgzAMBtBYao/D+bnD0L0jhQYGG+OXKqxnKVJevgQ7sb0eDwAAr+1rPQAA/McQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwH9ALMv3D4cY9OZYAAAAAElFTkSuQmCC',
+                                    sizes: '192x192',
+                                    type: 'image/png'
+                                },
+                                {
+                                    src: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAIAAAAiOjnJAAAACXBIWXMAAAsTAAALEwEAmpwYAAAGEWlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNi4wLW0wMDIgNzkuMTY0NDQ4LCAyMDIwLzAyLzEzLTE2OjA4OjIyICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdEV2dD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlRXZlbnQjIiB4bWxuczpwaG90b3Nob3A9Imh0dHA6Ly9ucy5hZG9iZS5jb20vcGhvdG9zaG9wLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgMjEuMiAoV2luZG93cykiIHhtcDpDcmVhdGVEYXRlPSIyMDI1LTAyLTIyVDEwOjMwOjQ3LTAzOjAwIiB4bXA6TWV0YWRhdGFEYXRlPSIyMDI1LTAyLTIyVDEwOjMwOjQ3LTAzOjAwIiB4bXA6TW9kaWZ5RGF0ZT0iMjAyNS0wMi0yMlQxMDozMDo0Ny0wMzowMCIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpmN2Q3MTg4My0wN2VjLTc3NDYtYjU2NC04YmI3ODM1MzI5NzgiIHhtcE1NOkRvY3VtZW50SUQ9ImFkb2JlOmRvY2lkOnBob3Rvc2hvcDo3YjRjMjA4Ny0yNjI2LTk3NDktODc4Ny1jNWM1YzQ4ZmE4YzMiIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDpjN2UzYjY2Yi02ZDBhLTU3NDMtOTM5MC1hYjI5N2Q3YTI5NDEiIHBob3Rvc2hvcDpDb2xvck1vZGU9IjMiIHBob3Rvc2hvcDpJQ0NQcm9maWxlPSJzUkdCIElFQzYxOTY2LTIuMSIgZGM6Zm9ybWF0PSJpbWFnZS9wbmciPiA8eG1wTU06SGlzdG9yeT4gPHJkZjpTZXE+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJjcmVhdGVkIiBzdEV2dDppbnN0YW5jZUlEPSJ4bXAuaWlkOmM3ZTNiNjZiLTZkMGEtNTc0My05MzkwLWFiMjk3ZDdhMjk0MSIgc3RFdnQ6d2hlbj0iMjAyNS0wMi0yMlQxMDozMDo0Ny0wMzowMCIgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWRvYmUgUGhvdG9zaG9wIDIxLjIgKFdpbmRvd3MpIi8+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJzYXZlZCIgc3RFdnQ6aW5zdGFuY2VJRD0ieG1wLmlpZDpmN2Q3MTg4My0wN2VjLTc3NDYtYjU2NC04YmI3ODM1MzI5NzgiIHN0RXZ0OndoZW49IjIwMjUtMDItMjJUMTA6MzA6NDctMDM6MDAiIHN0RXZ0OnNvZnR3YXJlQWdlbnQ9IkFkb2JlIFBob3Rvc2hvcCAyMS4yIChXaW5kb3dzKSIgc3RFdnQ6Y2hhbmdlZD0iLyIvPiA8L3JkZjpTZXE+IDwveG1wTU06SGlzdG9yeT4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7J8fVkAAABWWlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAeDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDYuMC1tMDAyIDc5LjE2NDQ0OCwgMjAyMC8wMi8xMy0xNjowODoyMiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgMjEuMiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6YzdlM2I2NmItNmQwYS01NzQzLTkzOTAtYWIyOTdkN2EyOTQxIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOmM3ZTNiNjZiLTZkMGEtNTc0My05MzkwLWFiMjk3ZDdhMjk0MSI+IDx4bXBNTTpIaXN0b3J5PiA8cmRmOlNlcT4gPHJkZjpsaSBzdEV2dDphY3Rpb249ImNyZWF0ZWQiIHN0RXZ0Omluc3RhbmNlSUQ9InhtcC5paWQ6YzdlM2I2NmItNmQwYS01NzQzLTkzOTAtYWIyOTdkN2EyOTQxIiBzdEV2dDp3aGVuPSIyMDI1LTAyLTIyVDEwOjMwOjQ3LTAzOjAwIiBzdEV2dDpzb2Z0d2FyZUFnZW50PSJBZG9iZSBQaG90b3Nob3AgMjEuMiAoV2luZG93cykiLz4gPC9yZGY6U2VxPiA8L3htcE1NOkhpc3Rvcnk+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+FpD2qAAAAbFJREFUeJzt3T0OgzAMBtBYao/D+bnD0L0jhQYGG+OXKqxnKVJevgQ7sb0eDwAAr+1rPQAA/McQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwBwBAADAHAEAAMAcAQAAwH9ALMv3D4cY9OZYAAAAAElFTkSuQmCC',
+                                    sizes: '512x512',
+                                    type: 'image/png'
+                                }
+                            ]
+                        };
+                        event.respondWith(
+                            new Response(JSON.stringify(manifest), {
+                                headers: { 'Content-Type': 'application/json' }
+                            })
+                        );
+                    } else {
+                        event.respondWith(fetch(event.request));
+                    }
+                });
+            `;
+            const blob = new Blob([swCode], { type: 'application/javascript' });
+            const swUrl = URL.createObjectURL(blob);
+            navigator.serviceWorker.register(swUrl)
+                .then(reg => console.log('Service Worker registrado'))
+                .catch(err => console.log('Erro no Service Worker', err));
+        });
+    }
 </script>
 </body>
 </html>
