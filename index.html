@@ -19,7 +19,6 @@
             justify-content: center;
             padding: 20px;
         }
-        /* cartão principal */
         .app-card {
             max-width: 1300px;
             width: 100%;
@@ -67,7 +66,7 @@
             box-shadow: 0 0 0 3px rgba(29,78,216,0.15);
         }
         .btn-azul {
-            background: #1d4ed8;  /* azul igual ao da plataforma */
+            background: #1d4ed8;
             color: white;
             border: none;
             padding: 12px 24px;
@@ -106,7 +105,7 @@
             font-size: 0.9rem;
             margin-top: 8px;
         }
-        /* aplicativo principal (inicialmente oculto) */
+        /* aplicativo principal */
         #app {
             display: none;
             background: white;
@@ -138,7 +137,6 @@
         .logout-btn:hover {
             background: #f1f5f9;
         }
-        /* duas colunas */
         .dashboard {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -170,7 +168,6 @@
             align-items: center;
             gap: 8px;
         }
-        /* calendário */
         .calendario-header {
             display: flex;
             justify-content: space-between;
@@ -234,7 +231,6 @@
             background: #e6f0ff;
             font-weight: 600;
         }
-        /* agenda */
         .agenda-lista {
             background: #f9fbfe;
             border-radius: 18px;
@@ -286,7 +282,7 @@
             border-radius: 60px;
             background: white;
         }
-        /* bloco de notas */
+        /* BLOCO DE NOTAS */
         .toolbar {
             display: flex;
             flex-wrap: wrap;
@@ -317,28 +313,64 @@
             border-color: #1d4ed8;
             color: white;
         }
-        .editor {
-            border: 1px solid #e2e8f0;
+        /* editor com aspecto de folha */
+        .editor-wrapper {
+            background: #e6e9ef;
+            padding: 24px 20px;
             border-radius: 24px;
+            margin-bottom: 16px;
+            box-shadow: inset 0 2px 6px rgba(0,0,0,0.03);
+        }
+        .editor {
             background: white;
-            padding: 22px;
-            min-height: 280px;
-            max-height: 380px;
+            border: 1px solid #dce3ec;
+            border-radius: 16px;
+            padding: 40px 36px;
+            min-height: 340px;
+            max-height: 420px;
             overflow-y: auto;
             outline: none;
             font-size: 1rem;
-            line-height: 1.5;
-            box-shadow: inset 0 2px 5px rgba(0,0,0,0.02);
+            line-height: 1.6;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.05), 0 0 0 1px rgba(0,0,0,0.02);
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto;
+            transition: box-shadow 0.2s;
         }
+        .editor:focus {
+            box-shadow: 0 6px 18px rgba(29,78,216,0.1), 0 0 0 2px rgba(29,78,216,0.2);
+        }
+        /* imagens redimensionáveis e com alças */
         .editor img {
             max-width: 100%;
-            border-radius: 16px;
-            margin: 10px 0;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            margin: 12px 0;
+            resize: both;
+            overflow: auto;
+            cursor: default;
+            border: 2px solid transparent;
+            transition: border 0.2s;
+        }
+        .editor img:active {
+            border: 2px dashed #1d4ed8;
+        }
+        /* controles de tamanho da imagem */
+        .img-controls {
+            display: inline-flex;
+            gap: 4px;
+            margin-left: 8px;
+        }
+        .img-controls button {
+            padding: 4px 10px;
+            font-size: 0.8rem;
         }
         .botoes-finais {
             display: flex;
             gap: 12px;
-            margin-top: 18px;
+            margin-top: 8px;
             justify-content: flex-end;
         }
         .status {
@@ -346,15 +378,31 @@
             color: #3b82f6;
             margin-top: 8px;
         }
-        .separador {
-            height: 1px;
-            background: #eef2f6;
-            margin: 18px 0 14px;
-        }
-        /* impressão limpa */
         @media print {
-            body, .app-card, .dashboard, .coluna { background: white; }
-            .btn-azul, .toolbar, .logout-btn, .btn-group, .novo-item-agenda, .botoes-finais { display: none; }
+            body, .app-card, .dashboard, .coluna, .editor-wrapper, .editor {
+                background: white;
+                box-shadow: none;
+                border: none;
+                padding: 0.5cm;
+                margin: 0;
+                max-width: 100%;
+            }
+            .btn-azul, .toolbar, .logout-btn, .btn-group, .novo-item-agenda, .botoes-finais, .app-header, .img-controls {
+                display: none;
+            }
+            .editor {
+                overflow: visible;
+                page-break-inside: avoid;
+                padding: 0.3cm;
+                max-width: 100%;
+            }
+            .editor img {
+                max-width: 60% !important;
+                height: auto;
+                page-break-inside: avoid;
+                display: block;
+                margin: 0 auto;
+            }
         }
     </style>
 </head>
@@ -371,7 +419,7 @@
         </div>
     </div>
 
-    <!-- APLICATIVO PRINCIPAL (inicialmente oculto) -->
+    <!-- APLICATIVO PRINCIPAL -->
     <div id="app">
         <div class="app-header">
             <h1>📅 Agenda·doc</h1>
@@ -407,7 +455,7 @@
                 <button class="btn-azul" id="imprimir-agenda" style="margin-top: 8px;">🖨️ Imprimir agenda</button>
             </div>
 
-            <!-- COLUNA DIREITA: BLOCO DE NOTAS RICO -->
+            <!-- COLUNA DIREITA: BLOCO DE NOTAS -->
             <div class="coluna">
                 <h2>📝 Bloco de notas (Word style)</h2>
                 <div class="toolbar">
@@ -416,10 +464,18 @@
                     <button id="underline-btn"><u>U</u></button>
                     <button id="inserir-imagem-btn">🖼️ Imagem</button>
                     <input type="file" id="upload-imagem" accept="image/*" style="display: none;">
+                    <!-- Botões para redimensionar imagem selecionada -->
+                    <span class="img-controls">
+                        <button id="img-diminuir" title="Diminuir imagem selecionada">−</button>
+                        <button id="img-aumentar" title="Aumentar imagem selecionada">+</button>
+                    </span>
                     <span style="flex:1"></span>
                     <button id="salvar-nota" class="btn-azul-peq">💾 Salvar p/ data</button>
                 </div>
-                <div id="notepad-editor" class="editor" contenteditable="true" placeholder="Escreva aqui..."></div>
+                <!-- wrapper para centralizar a folha -->
+                <div class="editor-wrapper">
+                    <div id="notepad-editor" class="editor" contenteditable="true" placeholder="Escreva aqui..."></div>
+                </div>
                 <div class="botoes-finais">
                     <button class="btn-secundario" id="limpar-nota">Novo</button>
                     <button class="btn-azul" id="imprimir-nota">🖨️ Imprimir documento</button>
@@ -432,7 +488,7 @@
 
 <script>
     (function() {
-        // ---------- SENHA ----------
+        // ---------- PERSISTÊNCIA DE LOGIN ----------
         const SENHA_CORRETA = "212963btx";
         const loginScreen = document.getElementById('login-screen');
         const appDiv = document.getElementById('app');
@@ -441,18 +497,28 @@
         const loginErro = document.getElementById('login-erro');
         const logoutBtn = document.getElementById('logout-btn');
 
+        // Verifica se já está logado (localStorage)
+        if (localStorage.getItem('logado') === 'true') {
+            loginScreen.style.display = 'none';
+            appDiv.style.display = 'block';
+            // Inicia a aplicação após um pequeno atraso para garantir que o DOM esteja pronto
+            setTimeout(iniciarAplicacao, 0);
+        }
+
         btnLogin.addEventListener('click', () => {
             if (senhaInput.value === SENHA_CORRETA) {
+                localStorage.setItem('logado', 'true');
                 loginScreen.style.display = 'none';
                 appDiv.style.display = 'block';
                 loginErro.innerText = '';
-                iniciarAplicacao();  // carrega dados e renderiza
+                iniciarAplicacao();
             } else {
                 loginErro.innerText = '❌ Senha incorreta. Tente 212963btx';
             }
         });
 
         logoutBtn.addEventListener('click', () => {
+            localStorage.removeItem('logado');
             appDiv.style.display = 'none';
             loginScreen.style.display = 'block';
             senhaInput.value = '';
@@ -460,12 +526,12 @@
 
         // ---------- APLICAÇÃO ----------
         let currentYear = new Date().getFullYear();
-        let currentMonth = new Date().getMonth(); // 0-11
-        let selectedDateStr = null;  // formato YYYY-MM-DD
+        let currentMonth = new Date().getMonth();
+        let selectedDateStr = null;
 
-        // Estruturas de dados (localStorage)
-        let agendaDB = {};   // { "2025-02-21": ["item1", "item2"] }
-        let notasDB = {};    // { "2025-02-21": "<p>html</p>" }
+        // Estruturas de dados
+        let agendaDB = {};
+        let notasDB = {};
 
         function carregarStorage() {
             try {
@@ -503,21 +569,8 @@
         const limparNotaBtn = document.getElementById('limpar-nota');
         const imprimirNotaBtn = document.getElementById('imprimir-nota');
         const notaStatus = document.getElementById('nota-status');
-
-        // Inicialização após login
-        function iniciarAplicacao() {
-            carregarStorage();
-            // Se não houver data selecionada, usa hoje
-            if (!selectedDateStr) {
-                const hoje = new Date();
-                currentYear = hoje.getFullYear();
-                currentMonth = hoje.getMonth();
-                selectedDateStr = formatDate(hoje);
-            }
-            renderCalendar();
-            atualizarAgendaUI();
-            carregarNotaPorData(selectedDateStr);
-        }
+        const imgDiminuir = document.getElementById('img-diminuir');
+        const imgAumentar = document.getElementById('img-aumentar');
 
         function formatDate(date) {
             const y = date.getFullYear();
@@ -526,19 +579,18 @@
             return `${y}-${m}-${d}`;
         }
 
-        // Renderiza calendário
         function renderCalendar() {
             const primeiroDia = new Date(currentYear, currentMonth, 1);
             const ultimoDia = new Date(currentYear, currentMonth + 1, 0);
             const diasNoMes = ultimoDia.getDate();
-            const diaSemanaInicio = primeiroDia.getDay(); // 0 = domingo
+            const diaSemanaInicio = primeiroDia.getDay();
 
             const meses = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
             mesAnoEl.innerText = `${meses[currentMonth]} ${currentYear}`;
 
             let html = '<tr>';
             let dia = 1;
-            for (let i = 0; i < 6; i++) { // até 6 linhas
+            for (let i = 0; i < 6; i++) {
                 for (let j = 0; j < 7; j++) {
                     if (i === 0 && j < diaSemanaInicio) {
                         html += '<td></td>';
@@ -560,13 +612,12 @@
             html += '</tr>';
             calendarioCorpo.innerHTML = html;
 
-            // Adiciona evento de clique nas células com data
             document.querySelectorAll('td[data-data]').forEach(td => {
                 td.addEventListener('click', () => {
                     const dataClicada = td.dataset.data;
                     if (dataClicada) {
                         selectedDateStr = dataClicada;
-                        renderCalendar();  // atualiza destaque
+                        renderCalendar();
                         atualizarAgendaUI();
                         carregarNotaPorData(selectedDateStr);
                     }
@@ -574,7 +625,6 @@
             });
         }
 
-        // Atualiza a lista de agenda para a data selecionada
         function atualizarAgendaUI() {
             if (!selectedDateStr) return;
             dataInfo.innerText = selectedDateStr.replace(/-/g, '/');
@@ -594,7 +644,6 @@
             });
         }
 
-        // Adicionar novo item de agenda
         btnAddAgenda.addEventListener('click', () => {
             if (!selectedDateStr) return;
             const texto = novoItemTexto.value.trim();
@@ -606,7 +655,6 @@
             atualizarAgendaUI();
         });
 
-        // Navegação mês
         btnMesAnt.addEventListener('click', () => {
             if (currentMonth === 0) {
                 currentMonth = 11;
@@ -659,12 +707,11 @@
             notaStatus.innerText = '✏️ Novo documento (não salvo)';
         });
 
-        // Formatação com execCommand
         boldBtn.addEventListener('click', () => document.execCommand('bold', false));
         italicBtn.addEventListener('click', () => document.execCommand('italic', false));
         underlineBtn.addEventListener('click', () => document.execCommand('underline', false));
 
-        // Inserir imagem
+        // Inserir imagem com tamanho inicial de 300px
         inserirImagemBtn.addEventListener('click', () => {
             uploadImagem.click();
         });
@@ -676,8 +723,8 @@
                     const img = document.createElement('img');
                     img.src = event.target.result;
                     img.style.maxWidth = '100%';
-                    img.style.borderRadius = '12px';
-                    // Insere na posição do cursor
+                    img.style.height = 'auto';
+                    img.style.width = '300px'; // tamanho inicial
                     const selection = window.getSelection();
                     if (selection.rangeCount > 0) {
                         const range = selection.getRangeAt(0);
@@ -693,7 +740,42 @@
             uploadImagem.value = '';
         });
 
-        // Impressão da agenda
+        // Redimensionar imagem selecionada com botões +/-
+        function getSelectedImage() {
+            const selection = window.getSelection();
+            if (selection.rangeCount === 0) return null;
+            const node = selection.getRangeAt(0).startContainer;
+            // Se o nó for texto, pega o elemento pai
+            const element = node.nodeType === Node.ELEMENT_NODE ? node : node.parentElement;
+            if (element && element.tagName === 'IMG') return element;
+            // Se a seleção estiver dentro de um parágrafo, tenta achar uma imagem filha?
+            // Mas vamos simplificar: se o elemento selecionado for uma imagem, retorna.
+            return null;
+        }
+
+        imgDiminuir.addEventListener('click', () => {
+            const img = getSelectedImage();
+            if (img) {
+                let currentWidth = img.style.width ? parseInt(img.style.width) : 300;
+                if (isNaN(currentWidth)) currentWidth = 300;
+                img.style.width = Math.max(50, currentWidth - 20) + 'px';
+            } else {
+                alert('Selecione uma imagem para redimensionar.');
+            }
+        });
+
+        imgAumentar.addEventListener('click', () => {
+            const img = getSelectedImage();
+            if (img) {
+                let currentWidth = img.style.width ? parseInt(img.style.width) : 300;
+                if (isNaN(currentWidth)) currentWidth = 300;
+                img.style.width = (currentWidth + 20) + 'px';
+            } else {
+                alert('Selecione uma imagem para redimensionar.');
+            }
+        });
+
+        // Impressões
         imprimirAgendaBtn.addEventListener('click', () => {
             if (!selectedDateStr) return;
             const itens = agendaDB[selectedDateStr] || [];
@@ -710,24 +792,34 @@
             win.print();
         });
 
-        // Impressão do documento
         imprimirNotaBtn.addEventListener('click', () => {
             const conteudo = notepadEditor.innerHTML;
             const win = window.open('', '_blank');
             win.document.write(`
                 <html><head><title>Documento</title>
-                <style>body { font-family: system-ui; padding: 2rem; } img { max-width: 100%; }</style>
+                <style>
+                    body { font-family: system-ui; padding: 2rem; max-width: 800px; margin: 0 auto; }
+                    img { max-width: 60%; height: auto; display: block; margin: 20px auto; }
+                </style>
                 </head><body>${conteudo}</body></html>
             `);
             win.document.close();
             win.print();
         });
 
-        // Inicialmente não inicia a app (espera login)
-        // mas precisamos garantir que o calendário não tente renderizar sem login
-        // será chamado no login
+        function iniciarAplicacao() {
+            carregarStorage();
+            if (!selectedDateStr) {
+                const hoje = new Date();
+                currentYear = hoje.getFullYear();
+                currentMonth = hoje.getMonth();
+                selectedDateStr = formatDate(hoje);
+            }
+            renderCalendar();
+            atualizarAgendaUI();
+            carregarNotaPorData(selectedDateStr);
+        }
     })();
 </script>
-<!-- uma pequena nota visual -->
 </body>
 </html>
